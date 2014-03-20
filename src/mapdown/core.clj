@@ -10,3 +10,9 @@
    (map #(keyword (subs % 1)) (re-seq keyword-re s))
    (map str/trim (drop 1 (str/split s keyword-re)))))
 
+(defn parse-file [path]
+  (let [contents (slurp path)]
+    (try
+      (parse contents)
+      (catch Exception e
+        (throw (Exception. (str "Error when parsing '" path "': " (.getMessage e))))))))

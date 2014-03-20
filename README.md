@@ -53,6 +53,12 @@ into this:
  :aside "There's not much to it, really."}
 ```
 
+### Supplementary features
+
+You can also parse the contents of a file with `(parse-file "path")`.
+Why not just slurp it in yourself? Just to get error messages that
+include the file path.
+
 ## Contribute
 
 Yes, please do. And add tests for your feature or fix, or I'll
