@@ -21,7 +21,7 @@ Add `[mapdown "0.1.0"]` to `:dependencies` in your `project.clj`.
 
 ## Usage
 
-With `(mapdown/parse str)` you turn this:
+Given this file, say in `intro.md`:
 
 ```text
 :title Mapdown example
@@ -37,9 +37,15 @@ It's, like, text with keywords.
 There's not much to it, really.
 ```
 
-into this:
+You can turn into a wonderful map like this:
 
 ```clj
+(ns example.core
+  (:require [mapdown.core :as mapdown]))
+
+(mapdown/parse (slurp "intro.md"))
+
+;; =>
 {:title "Mapdown example"
  :author "Magnar Sveen"
  :body "Here's an example of how mapdown works.\n\nIt's, like, text with keywords."
