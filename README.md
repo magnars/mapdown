@@ -37,7 +37,7 @@ It's, like, text with keywords.
 There's not much to it, really.
 ```
 
-You can turn into a wonderful map like this:
+Turn it into a map like this:
 
 ```clj
 (ns example.core
@@ -55,8 +55,8 @@ You can turn into a wonderful map like this:
 ### Supplementary features
 
 You can also parse the contents of a file with `(parse-file path)`.
-Why not just slurp it in yourself? Just to get error messages that
-include the file path.
+The only reason to use this over just slurping it yourself, is to get
+error messages that include the file path.
 
 There's also `(slurp-directory path regexp)`, which slurps in an
 entire directory tree of files matching the regexp, parsing
