@@ -23,7 +23,7 @@ Add `[mapdown "0.1.0"]` to `:dependencies` in your `project.clj`.
 
 With `(mapdown/parse str)` you turn this:
 
-```txt
+```text
 :title Mapdown example
 :author Magnar Sveen
 :body
