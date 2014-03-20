@@ -19,13 +19,6 @@ avoiding string escaping and regaining editor support.
 
 Add `[mapdown "0.1.0"]` to `:dependencies` in your `project.clj`.
 
-Please note that this project uses
-[Semantic Versioning](http://semver.org/). As long as we're on a `0`
-major version, there might be API changes. Pay attention when
-upgrading to a new minor version. As soon as we're on a `1` major
-version, there will be no breaking changes without a major version
-increase.
-
 ## Usage
 
 With `(mapdown/parse str)` you turn this:
@@ -55,9 +48,21 @@ into this:
 
 ### Supplementary features
 
-You can also parse the contents of a file with `(parse-file "path")`.
+You can also parse the contents of a file with `(parse-file path)`.
 Why not just slurp it in yourself? Just to get error messages that
 include the file path.
+
+There's also `(slurp-directory path regexp)`, which slurps in an
+entire directory tree of files matching the regexp, parsing
+everything.
+
+```clj
+(def articles (slurp-directory "resources/articles/" #"\.md$"))
+```
+
+This works just like the same function in
+[Stasis](https://github.com/magnars/stasis), except it also parses the
+files. Again, this is to get better error messages.
 
 ## Contribute
 

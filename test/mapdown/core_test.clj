@@ -48,3 +48,16 @@ def
  (with-files [["/file.md" "bleh"]]
    (parse-file (str tmp-dir "/file.md"))
    => (throws Exception (str "Error when parsing '" tmp-dir "/file.md': Mapdown content must start with a key - or the content has nowhere to go."))))
+
+(fact
+ "You can slurp entire directories in, finding files based on a regexp."
+
+ (with-files [["/file.md" ":title abc"]
+              ["/more/stuff.md" ":title def"]]
+   (slurp-directory tmp-dir #"\.md$")
+   => {"/file.md" {:title "abc"}
+       "/more/stuff.md" {:title "def"}})
+
+ (with-files [["/file.md" "bleh"]]
+   (slurp-directory tmp-dir #"\.md$")
+   => (throws Exception (str "Error when parsing '" tmp-dir "/file.md': Mapdown content must start with a key - or the content has nowhere to go."))))
