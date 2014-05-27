@@ -1,4 +1,4 @@
-(defproject mapdown "0.1.0"
+(defproject mapdown "0.2.0"
   :description "A lightweight markup format to turn strings into maps."
   :url "http://github.com/magnars/mapdown"
   :license {:name "Eclipse Public License"
