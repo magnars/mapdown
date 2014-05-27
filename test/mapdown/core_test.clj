@@ -32,6 +32,24 @@ def
 :section2") => {:title "abc", :section1 "def", :illustration "ghi"})
 
 (fact
+ "80 dashes means we're creating a list of maps."
+
+ (parse "
+--------------------------------------------------------------------------------
+:title First item
+:body
+
+Some text
+--------------------------------------------------------------------------------
+:title Second item
+:body
+
+More text
+--------------------------------------------------------------------------------
+") => [{:title "First item", :body "Some text"}
+       {:title "Second item", :body "More text"}])
+
+(fact
  "To avoid nasty surprises, we don't tolerate text prior the first
  key. It would have nowhere to go, becoming quite literally trailing
  trash."

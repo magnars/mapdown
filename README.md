@@ -52,6 +52,32 @@ Turn it into a map like this:
  :aside "There's not much to it, really."}
 ```
 
+### A list of maps
+
+If the text starts with exactly 80 dashes, mapdown will interpret it as a list
+of maps. Like so:
+
+```
+--------------------------------------------------------------------------------
+:title First item
+:body
+
+Some text
+--------------------------------------------------------------------------------
+:title Second item
+:body
+
+More text
+--------------------------------------------------------------------------------
+```
+
+turns into:
+
+```clj
+[{:title "First item", :body "Some text"}
+ {:title "Second item", :body "More text"}]
+```
+
 ### Supplementary features
 
 You can also parse the contents of a file with `(parse-file path)`.
