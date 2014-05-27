@@ -16,11 +16,27 @@
    (map #(keyword (subs % 1)) (re-seq keyword-re s))
    (map str/trim (drop 1 (str/split s keyword-re)))))
 
+(defn- ordinal [num]
+  (if (contains? (set (range 11 14)) (mod num 100))
+    (str num "th")
+    (let [modulus (mod num 10)]
+      (cond
+       (= modulus 1) (str num "st")
+       (= modulus 2) (str num "nd")
+       (= modulus 3) (str num "rd")
+       :else (str num "th")))))
+
+(defn- parse-with-index [idx s]
+  (try
+    (parse-1 s)
+    (catch Exception e
+      (throw (Exception. (str "Error in " (ordinal (inc idx)) " entry: " (.getMessage e)))))))
+
 (defn- parse-list [^String s]
   (->> (str/split s eighty-dashes-re)
        (map str/trim)
        (remove empty?)
-       (map parse-1)))
+       (map-indexed parse-with-index)))
 
 (defn parse [^String s]
   (let [s (str/trim s)]

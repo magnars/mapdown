@@ -58,6 +58,18 @@ More text
 :title abc") => (throws Exception "Mapdown content must start with a key - or the content has nowhere to go."))
 
 (fact
+ "To help find errors, report the list location."
+
+ (parse "
+--------------------------------------------------------------------------------
+:title abc
+--------------------------------------------------------------------------------
+trash
+:title def
+--------------------------------------------------------------------------------
+") => (throws Exception "Error in 2nd entry: Mapdown content must start with a key - or the content has nowhere to go."))
+
+(fact
  "You can parse files, just to get proper error messages."
 
  (with-files [["/file.md" ":title abc"]]
